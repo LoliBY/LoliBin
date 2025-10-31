@@ -1,5 +1,11 @@
 # LoliBin
 
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/LoliBY/LoliBin" alt="License">
+</p>
+
+---
+
 **LoliBin** — это минималистичное, легкое, безопастное средство передачи информации, в зашифрованном виде.
 Он работает **без базы данных**, всё происходит прямо в браузере.
 
