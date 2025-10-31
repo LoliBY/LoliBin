@@ -1,7 +1,8 @@
 # LoliBin
 
 <p align="center">
-  <img src="https://img.shields.io/github/last-commit/LoliBY/LoliBin" alt="License">
+  <img src="https://img.shields.io/github/last-commit/LoliBY/LoliBin" alt="Last">
+  <img src="https://img.shields.io/github/languages/top/LoliBY/LoliBin" alt="Language">
 </p>
 
 
