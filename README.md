@@ -47,4 +47,4 @@
 ##  Автор
 
 **Created with love by [IlyaYuki](https://github.com/h3lix_it)**  
-🪄 *Powered by IlyaYuki*
+*Powered by IlyaYuki*
