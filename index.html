@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>LoliBin</title>
+<style>
+html, body {
+    height:100%;
+    margin:0;
+    font-family:sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f0f2f5;
+}
+#container {
+    width:700px;
+    max-width:95%;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    text-align:center;
+}
+h1 {margin-bottom:20px;}
+textarea, input, button {
+    width:100%;
+    padding:16px;
+    margin-bottom:16px;
+    font-size:16px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+textarea {resize:vertical; min-height:200px;}
+button {
+    border:none;
+    background:#666;
+    color:#fff;
+    cursor:pointer;
+    transition:.2s;
+}
+button:hover {background:#555;}
+#shareLink {
+    word-break:break-all;
+    font-size:14px;
+    max-width:100%;
+    overflow-wrap:break-word;
+    text-align:left;
+    background:#f9f9f9;
+    padding:8px;
+    border-radius:6px;
+    border:1px solid #ddd;
+}
+footer {
+    text-align:center;
+    font-size:12px;
+    color:#555;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+<div id="container">
+<h1>LoliBin</h1>
+<textarea id="noteInput" placeholder="Введите заметку здесь..."></textarea>
+<input type="text" id="noteTitle" placeholder="Название заметки (необязательно)">
+<input type="password" id="notePassword" placeholder="Пароль для шифрования (необязательно)">
+<button id="saveBtn">Сгенерировать ссылку</button>
+<p id="shareLink"></p>
+<footer>Powered by IlyaYuki</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+const noteInput=document.getElementById('noteInput');
+const notePassword=document.getElementById('notePassword');
+const noteTitle=document.getElementById('noteTitle');
+const shareLink=document.getElementById('shareLink');
+const saveBtn=document.getElementById('saveBtn');
+const params=new URLSearchParams(window.location.search);
+function encrypt(text,pass){return CryptoJS.AES.encrypt(text,pass).toString();}
+function decrypt(ciphertext,pass){try{return CryptoJS.AES.decrypt(ciphertext,pass).toString(CryptoJS.enc.Utf8);}catch(e){return null;}}
+if(params.has('data')){
+    const pass=params.get('key')||'';
+    try{
+        const decrypted=decrypt(params.get('data'),pass);
+        noteInput.value=decrypted||'Ошибка: не удалось расшифровать';
+        noteInput.readOnly=true;
+        noteInput.style.backgroundColor='#eaeaea';
+        noteTitle.style.display='none';
+        notePassword.style.display='none';
+        saveBtn.style.display='none';
+        shareLink.innerHTML='<b>Примечание:</b> Заметка только для просмотра.';
+    }catch(e){
+        noteInput.value='Ошибка при расшифровке!';
+        noteInput.readOnly=true;
+    }
+}
+saveBtn.onclick=()=>{
+    const text=noteInput.value.trim();
+    const pass=notePassword.value.trim()||'';
+    if(!text)return alert('Введите текст заметки!');
+    const cipher=encrypt(text,pass);
+    const url=location.origin+location.pathname+'?data='+encodeURIComponent(cipher)+'&key='+encodeURIComponent(pass);
+    shareLink.innerHTML=`<a href="${url}" target="_blank">${url}</a>`;
+};
+</script>
+</body>
+</html>
