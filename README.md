@@ -62,5 +62,5 @@
 
 ##  Автор
 
-**Created with love by [IlyaYuki](https://github.com/h3lix_it)**  
+**Created with love by [IlyaYuki](https://github.com/h3lix-it)**  
 *Powered by IlyaYuki*
