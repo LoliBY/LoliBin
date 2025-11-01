@@ -52,6 +52,14 @@
 
 ---
 
+## Ссылка на LoliBin
+
+**LokiNet** - http://8xpadhtsx5xycreozeqp3yay7daxmtxhmhs5xch3nj47qgquxany.loki/
+**Official Site** - https://bin.loli.com.by
+**I2P** - http://lolibin.i2p
+
+---
+
 ##  Автор
 
 **Created with love by [IlyaYuki](https://github.com/h3lix_it)**  
